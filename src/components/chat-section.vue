@@ -1,7 +1,7 @@
 <template>
   <section class="chat-section">
     <!-- show the message below when an error has occured within the application -->
-    <p v-if="error" class="error">Sorry, an error occured. Please try again later!</p>
+    <p class="error" v-for="errMssg in errors" :key="errMssg">Sorry, the following error occurred: {{errMssg}}. Please try again later!</p>
     <div ref="messages" class="chat-section__messages">
       <message-list :messages="messages"/>
     </div>
@@ -27,15 +27,25 @@ export default {
   },
   data: function () {
     return {
-      error: false,
+      errors: [],
     }
   },
-  errorCaptured() {
-    this.error = true;
+  errorCaptured(error, vm, info) {
+    // this.error = true;
+    // console.log('Error found')
+    if( this.errors.find(err => err == error.message))
+    {
+        return false;
+    }
+
+    this.errors.push(error.message)
     return false;
   },
   computed: {
-    ...mapGetters(['currentUser'])
+    ...mapGetters(['currentUser']),
+    hasErrors(){
+      return errors.length > 0
+    },
   },
   methods: {
     ...mapActions(['sendMessage']),
@@ -57,7 +67,7 @@ export default {
         message.text = text;
       }
 
-      this.sendMessage(message);
+      return this.sendMessage(message);
     }
   }
 };

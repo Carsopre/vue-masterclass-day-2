@@ -3,7 +3,7 @@
     <app-header/>
     <app-sidebar/>
     <chat-section :messages="messages" :user="user" v-on:pushed-mssg="addMessage"/>
-    <search-sidebar/>
+    <search-sidebar :messages="messages" :searchText="searchText" :searching="searching"/>
   </div>
 </template>
 

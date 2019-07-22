@@ -16,10 +16,22 @@ export default {
     MessageList,
     MessageField
   },
-  // TODO: use props here instead of data
-  data: function() {
-    return window.chat;
+  props: {
+    messages: {
+      type: Array,
+      default: () => {
+        return [];
+      },
+      required: true
+    },
+    user: {
+      type: Object,      
+    }
   },
+  // TODO: use props here instead of data
+  // data: function() {
+  //   return window.chat;
+  // },
   methods: {
     createMessage() {
       return {
@@ -40,7 +52,8 @@ export default {
       }
 
       // TODO: emit message instead of adding it to messages here
-      this.messages.push(message);
+      // this.messages.push(message);
+      this.$emit('pushed-mssg', message)
     }
   }
 };

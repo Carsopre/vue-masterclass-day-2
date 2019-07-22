@@ -21,10 +21,27 @@ export default {
   components: {
     MessageList
   },
-  // TODO: use props here instead of data
-  data: function() {
-    return window.chat;
+  props: {
+     messages: {
+      type: Array,
+      default: () => {
+        return [];
+      },
+      required: true
+    },
+    searching: {
+      type: Boolean,
+      required: true
+    },
+    searchText: {
+      type: String,
+      required: true
+    }
   },
+  // TODO: use props here instead of data
+  // data: function() {
+  //   return window.chat;
+  // },
   computed: {
     filteredMessages() {
       return this.messages.filter(

@@ -17,17 +17,23 @@ export default {
     MessageList,
     MessageField
   },
-  // TODO: use mapState to get data from the store and omit the props
-  props: {
-    messages: {
-      type: Array,
-      required: true
-    },
-    user: {
-      type: Object,
-      required: true
-    }
+  computed:{
+    ...mapState({
+      user: state=> state.user,
+      messages: state=> state.messages
+    })
   },
+  // TODO: use mapState to get data from the store and omit the props
+  // props: {
+  //   messages: {
+  //     type: Array,
+  //     required: true
+  //   },
+  //   user: {
+  //     type: Object,
+  //     required: true
+  //   }
+  // },
   methods: {
     createMessage() {
       return {
@@ -47,7 +53,8 @@ export default {
       }
 
       // TODO: use mutation to add new message instead of emitting event
-      this.$emit('newMessage', message)
+      // this.$emit('newMessage', message)
+      this.$store.commit('addMssg', message);
     }
   }
 };

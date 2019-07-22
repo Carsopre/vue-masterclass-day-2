@@ -15,6 +15,9 @@ export default new Vuex.Store({
   },
   mutations: {
     // TODO: add mutation for adding a message
+    addMssg(state, mssg){
+        state.messages.push(mssg)
+    },
     updateUser(state, userData) {
       state.user = { ...state.user, ...userData }
     },

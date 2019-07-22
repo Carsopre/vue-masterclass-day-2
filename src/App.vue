@@ -2,7 +2,7 @@
   <div class="app" :class="{'app--searching' : searching}">
     <app-header/>
     <app-sidebar/>
-    <chat-section/>
+    <chat-section :messages="messages" :user="user" v-on:pushed-mssg="addMessage"/>
     <search-sidebar/>
   </div>
 </template>
@@ -23,6 +23,11 @@ export default {
     AppSidebar,
     ChatSection,
     SearchSidebar
+  },
+  methods: {
+    addMessage(newMssg){
+      this.messages.push(newMssg)
+    },
   }
 };
 </script>

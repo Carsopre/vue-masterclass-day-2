@@ -76,7 +76,10 @@ export default new Vuex.Store({
           commit('addUser', doc)
         }
       });
-    }
+    },
     //TODO: add action to send a message using the api
+    async sendMessage(store, message){
+        await api.addMessage(message)
+    }
   }
 })

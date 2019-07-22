@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from 'vuex'
+import { mapGetters, mapMutations, mapActions } from 'vuex'
 import MessageList from "./message-list";
 import MessageField from "./message-field";
 
@@ -23,6 +23,7 @@ export default {
   methods: {
     // TODO: add actions as method using mapActions
     ...mapMutations(['addMessage']),
+    ...mapActions(['sendMessage']),
     createMessage() {
       return {
         date: new Date(),
@@ -41,7 +42,8 @@ export default {
       }
 
       // TODO: use action from the store to send the message
-      this.addMessage(message)
+      // this.addMessage(message)
+      this.sendMessage(message)
     }
   }
 };

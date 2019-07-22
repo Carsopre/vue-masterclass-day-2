@@ -33,7 +33,7 @@ export default {
     this.initChat()
   },
   methods: {
-    ...mapActions(['initChat'])
+    ...mapActions(['initChat', 'sendMessage' ])
   }
 };
 </script>

@@ -1,7 +1,7 @@
 <template>
   <section class="chat-section">
     <!-- show the message below when an error has occured within the application -->
-    <!-- <p class="error">Sorry, an error occured. Please try again later!</p> -->
+    <p v-if="error" class="error">Sorry, an error occured. Please try again later!</p>
     <div ref="messages" class="chat-section__messages">
       <message-list :messages="messages"/>
     </div>
@@ -29,6 +29,10 @@ export default {
     return {
       error: false,
     }
+  },
+  errorCaptured() {
+    this.error = true;
+    return false;
   },
   computed: {
     ...mapGetters(['currentUser'])

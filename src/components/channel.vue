@@ -11,11 +11,11 @@ export default {
     ChatSection
   },
   computed: {
-    ...mapGetters(['messages']),
+    ...mapGetters(['messages', ]),
     filteredMessages() {
       return this.messages.filter(message =>
         // TODO: use $route.params to filter messages on current channel
-        message
+        message.channel == this.$route.params.channelId
       )
     }
   },

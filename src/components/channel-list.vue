@@ -4,7 +4,13 @@
     <ul>
       <li v-for="channel in channels" :key="channel.name">
         <router-link
-          :to="`/${channel.id}`"
+          :to="{
+              name:'channel', 
+              params:
+              {
+                channelId:channel.id
+              }
+            }"
           class="channel-list__item"
           :class="{ 'channel-list__item--current': currentChannelId === channel.id }"
         >
